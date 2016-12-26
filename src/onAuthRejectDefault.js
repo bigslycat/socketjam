@@ -1,8 +1,8 @@
 // @flow
 
-import type { CbType } from './types';
+import type { AuthRejectCbType } from './types';
 
-const onAuthRejectDefault: CbType = (socket, { name, message } = {}) => {
+const onAuthRejectDefault: AuthRejectCbType = (socket, { name, message } = {}) => {
   socket.emit('auth/reject', name ? { name, message } : undefined);
 };
 

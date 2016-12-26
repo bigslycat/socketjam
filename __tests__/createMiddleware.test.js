@@ -4,10 +4,8 @@ import jwt from 'jsonwebtoken';
 
 import createMiddleware from '../src/createMiddleware';
 import jwtVerify from '../src/jwtVerify';
-import socketOnDecorate from '../src/socketOnDecorate';
 
 jest.mock('../src/jwtVerify');
-jest.mock('../src/socketOnDecorate');
 
 const secret = 'secret';
 
@@ -42,12 +40,12 @@ describe('createMiddleware()', () => {
   });
 
   it('Should call the onAuthSuccess(), if the token is verified.', async () => {
-    jwtVerify.mockImplementation(() => Promise.resolve('onStub'));
-    socketOnDecorate.mockImplementation((on, decodedToken) => decodedToken);
+    const payload = { user: 'vasya' };
+    const token = jwt.sign(payload, secret);
+
+    jwtVerify.mockImplementation(() => Promise.resolve(payload));
 
     const { onAnonMock, onAuthSuccessMock, onAuthRejectMock, nextMock } = createMocks();
-
-    const token = jwt.sign({ user: 'vasya' }, secret);
 
     const middleware = createMiddleware({
       secret,
@@ -67,10 +65,8 @@ describe('createMiddleware()', () => {
 
     expect(onAnonMock).toHaveBeenCalledTimes(0);
     expect(onAuthSuccessMock).toHaveBeenCalledTimes(1);
-    expect(onAuthSuccessMock).toBeCalledWith(socket);
+    expect(onAuthSuccessMock).toBeCalledWith(socket, payload);
     expect(onAuthRejectMock).toHaveBeenCalledTimes(0);
-
-    expect(socket.on).toBe('onStub');
 
     expect(nextMock).toHaveBeenCalledTimes(1);
     expect(nextMock).toBeCalledWith();

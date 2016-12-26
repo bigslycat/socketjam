@@ -3,6 +3,9 @@
 import onAnonDefault from '../src/onAnonDefault';
 import onAuthSuccessDefault from '../src/onAuthSuccessDefault';
 import onAuthRejectDefault from '../src/onAuthRejectDefault';
+import socketOnDecorate from '../src/socketOnDecorate';
+
+jest.mock('../src/socketOnDecorate');
 
 describe('Callbacks of authentication state', () => {
   describe('onAnonDefault( socket )', () => {
@@ -20,11 +23,22 @@ describe('Callbacks of authentication state', () => {
 
   describe('onAuthSuccessDefault( socket )', () => {
     it('Successful authentication callback. Emits "auth/success" event to socket', () => {
-      const emitMock = jest.fn();
+      socketOnDecorate.mockImplementation(
+        (on, decodedToken) => ({ on, decodedToken }),
+      );
 
-      onAuthSuccessDefault(({
-        emit: eventName => emitMock(eventName),
-      }: any));
+      const emitMock = jest.fn();
+      const bindMock = jest.fn();
+
+      bindMock.mockReturnValue('onDecorated');
+
+      const on = { bind: bindMock };
+      const TOKEN = 'token';
+
+      onAuthSuccessDefault(({ emit: emitMock, on }: any), TOKEN);
+
+      expect(socketOnDecorate).toHaveBeenCalledTimes(1);
+      expect(socketOnDecorate).toHaveBeenCalledWith('onDecorated', TOKEN);
 
       expect(emitMock).toHaveBeenCalledTimes(1);
       expect(emitMock).toHaveBeenCalledWith('auth/success');

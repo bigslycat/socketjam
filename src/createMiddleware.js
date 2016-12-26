@@ -1,12 +1,15 @@
 // @flow
 
-import socketOnDecorate from './socketOnDecorate';
 import onAnonDefault from './onAnonDefault';
 import onAuthSuccessDefault from './onAuthSuccessDefault';
 import onAuthRejectDefault from './onAuthRejectDefault';
 import jwtVerify from './jwtVerify';
 
-import type { CbType } from './types';
+import type {
+  AnonCbType,
+  AuthSuccessCbType,
+  AuthRejectCbType,
+} from './types';
 import type { SocketType } from './types/socket';
 import type { JwtOptionsType } from './types/jwt';
 
@@ -18,9 +21,9 @@ type MiddlewareType = (
 type SocketjamType = (config: {
   secret: string,
   jwtOptions?: JwtOptionsType,
-  onAnon?: CbType,
-  onAuthSuccess?: CbType,
-  onAuthReject?: CbType,
+  onAnon?: AnonCbType,
+  onAuthSuccess?: AuthSuccessCbType,
+  onAuthReject?: AuthRejectCbType,
 }) => MiddlewareType;
 
 const createMiddleware: SocketjamType = ({
@@ -43,10 +46,7 @@ const createMiddleware: SocketjamType = ({
 
     try {
       const decodedToken = await jwtVerify(token, secret, jwtOptions);
-
-      // eslint-disable-next-line no-param-reassign
-      socket.on = socketOnDecorate(socket.on.bind(socket), decodedToken);
-      onAuthSuccess(socket);
+      onAuthSuccess(socket, decodedToken);
     } catch (e) {
       onAuthReject(socket, {
         name: e.name,
