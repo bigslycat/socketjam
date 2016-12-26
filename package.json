@@ -12,10 +12,10 @@
     "types": "echo \"  `flow check --color always`\\n\"",
     "types-cover": "flow-coverage-report -i 'src/**/*.js' -x 'lib/**/*.js'",
     "test": "jest --verbose",
-    "total-check": "npm run lint && npm run types && npm test",
-    "build": "npm run total-check && babel src --out-dir lib",
-    "precommit": "npm run total-check",
-    "prepush": "npm run total-check",
+    "full-check": "npm run lint && npm run types && npm test",
+    "build": "npm run full-check && babel src --out-dir lib",
+    "precommit": "npm run full-check",
+    "prepush": "npm run full-check",
     "prepublish": "npm run build"
   },
   "keywords": [
