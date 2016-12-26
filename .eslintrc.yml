@@ -1,0 +1,67 @@
+parser: babel-eslint
+extends:
+  - airbnb
+  - plugin:flowtype/recommended
+  - plugin:import/errors
+  - plugin:import/warnings
+plugins:
+  - flowtype
+  - import
+env:
+  node: true
+  jest: true
+parserOptions:
+  ecmaVersion: 8
+  sourceType: module
+  ecmaFeatures:
+    impliedStrict: true
+    experimentalObjectRestSpread: true
+rules:
+  semi:
+    - error
+    - always
+    - omitLastInOneLineBlock: true
+#   flowtype/boolean-style:
+#     - error
+#     - boolean
+#   flowtype/define-flow-type: error
+#   flowtype/delimiter-dangle:
+#     - error
+#     - always-multiline
+#   flowtype/generic-spacing:
+#     - error
+#     - never
+#   flowtype/no-primitive-constructor-types: error
+#   flowtype/no-weak-types: error
+#   flowtype/object-type-delimiter:
+#     - error
+#     - comma
+#   flowtype/require-parameter-type: error
+#   flowtype/require-return-type:
+#     - error
+#     - always
+#     - annotateUndefined: never
+#   flowtype/require-valid-file-annotation: error
+#   flowtype/semi:
+#     - error
+#     - always
+#   flowtype/space-after-type-colon:
+#     - error
+#     - always
+#   flowtype/space-before-generic-bracket:
+#     - error
+#     - never
+#   flowtype/space-before-type-colon:
+#     - error
+#     - never
+#   flowtype/type-id-match:
+#     - error
+#     - ^([A-Z][a-z0-9]+)+Type$
+#   flowtype/union-intersection-spacing:
+#     - error
+#     - always
+#   flowtype/use-flow-type: error
+#   flowtype/valid-syntax: error
+# settings:
+#   flowtype:
+#     onlyFilesWithFlowAnnotation: true

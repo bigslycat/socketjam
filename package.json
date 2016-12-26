@@ -1,0 +1,66 @@
+{
+  "name": "socketjam",
+  "version": "0.0.1",
+  "description": "Lightweight and flexible Socket.IO JWT Authentication Middleware",
+  "main": "lib/createMiddleware.js",
+  "scripts": {
+    "lint": "eslint --color src/** && echo \"  No syntax error found\\n\"",
+    "types": "echo \"  `flow check --color always`\\n\"",
+    "types-cover": "flow-coverage-report -i 'src/**/*.js' -x 'lib/**/*.js'",
+    "test": "jest --verbose",
+    "total-check": "npm run lint && npm run types && npm test",
+    "build": "npm run total-check && babel src --out-dir lib",
+    "precommit": "npm run total-check",
+    "prepush": "npm run total-check",
+    "prepublish": "npm run build"
+  },
+  "keywords": [
+    "Socket.IO",
+    "JWT",
+    "authentication",
+    "authorization",
+    "middleware",
+    "JSON Web Tokens",
+    "RFC 7519"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bigslycat/socketjam.git"
+  },
+  "author": {
+    "name": "Pavel Tereschenko",
+    "email": "me@pavlik.pro",
+    "url": "https://github.com/bigslycat"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "jsonwebtoken": "^7.2.1"
+  },
+  "files": [
+    "lib",
+    "!lib/types"
+  ],
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-eslint": "^7.1.1",
+    "babel-plugin-syntax-flow": "^6.18.0",
+    "babel-plugin-syntax-trailing-function-commas": "^6.20.0",
+    "babel-plugin-transform-async-to-generator": "^6.16.0",
+    "babel-plugin-transform-es2015-destructuring": "^6.19.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.18.0",
+    "babel-plugin-transform-es2015-parameters": "^6.21.0",
+    "babel-plugin-transform-export-extensions": "^6.8.0",
+    "babel-plugin-transform-flow-strip-types": "^6.21.0",
+    "babel-plugin-transform-object-rest-spread": "^6.20.2",
+    "eslint": "^3.12.2",
+    "eslint-config-airbnb": "^13.0.0",
+    "eslint-plugin-flowtype": "^2.29.1",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.8.0",
+    "flow-bin": "^0.37.4",
+    "flow-coverage-report": "^0.2.0",
+    "husky": "0.12.0",
+    "jest": "^18.0.0"
+  }
+}
