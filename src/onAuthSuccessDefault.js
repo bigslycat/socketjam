@@ -2,7 +2,10 @@
 
 import socketOnDecorate from './socketOnDecorate';
 
-import type { AuthSuccessCbType } from './types';
+import type { PlainType } from './types';
+import type { SocketType } from './types/socket';
+
+type AuthSuccessCbType = (socket: SocketType, decodedToken: PlainType) => void;
 
 const onAuthSuccessDefault: AuthSuccessCbType = (
   socket,

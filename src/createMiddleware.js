@@ -5,11 +5,6 @@ import onAuthSuccessDefault from './onAuthSuccessDefault';
 import onAuthRejectDefault from './onAuthRejectDefault';
 import jwtVerify from './jwtVerify';
 
-import type {
-  AnonCbType,
-  AuthSuccessCbType,
-  AuthRejectCbType,
-} from './types';
 import type { SocketType } from './types/socket';
 import type { JwtOptionsType } from './types/jwt';
 
@@ -21,9 +16,9 @@ type MiddlewareType = (
 type SocketjamType = (config: {
   secret: string,
   jwtOptions?: JwtOptionsType,
-  onAnon?: AnonCbType,
-  onAuthSuccess?: AuthSuccessCbType,
-  onAuthReject?: AuthRejectCbType,
+  onAnon?: typeof onAnonDefault,
+  onAuthSuccess?: typeof onAuthSuccessDefault,
+  onAuthReject?: typeof onAuthRejectDefault,
 }) => MiddlewareType;
 
 const createMiddleware: SocketjamType = ({

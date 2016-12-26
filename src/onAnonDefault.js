@@ -1,6 +1,8 @@
 // @flow
 
-import type { AnonCbType } from './types';
+import type { SocketType } from './types/socket';
+
+type AnonCbType = (socket: SocketType) => void;
 
 const onAnonDefault: AnonCbType = (socket) => { socket.emit('hello') };
 
