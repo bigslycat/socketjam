@@ -3,6 +3,10 @@
   "version": "0.0.1",
   "description": "Lightweight and flexible Socket.IO JWT Authentication Middleware",
   "main": "lib/createMiddleware.js",
+  "engines": {
+    "node": ">=7.3.0",
+    "npm": ">=4.0.5"
+  },
   "scripts": {
     "lint": "eslint --color src/** && echo \"  No syntax error found\\n\"",
     "types": "echo \"  `flow check --color always`\\n\"",
