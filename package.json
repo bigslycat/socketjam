@@ -1,6 +1,6 @@
 {
   "name": "socketjam",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Lightweight and flexible Socket.IO JWT Authentication Middleware",
   "main": "lib/createMiddleware.js",
   "engines": {
