@@ -4,6 +4,9 @@ The main advantage of this package before
 [this package](https://github.com/auth0/socketio-jwt) — this is an opportunity to use a socket
 connection without authorization.
 
+[![Build Status](https://travis-ci.org/bigslycat/socketjam.svg?branch=master)](https://travis-ci.org/bigslycat/socketjam)
+[![Coverage Status](https://coveralls.io/repos/github/bigslycat/socketjam/badge.svg?branch=master)](https://coveralls.io/github/bigslycat/socketjam?branch=master)
+
 ## Usage
 
 ```javascript
