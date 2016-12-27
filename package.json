@@ -8,6 +8,9 @@
     "npm": ">=4.0.5"
   },
   "scripts": {
+    "img-build": "docker build --rm -t socketjam .",
+    "img-run": "docker run --rm -v `pwd`:/socketjam --name sj socketjam",
+    "check-on-node-6": "npm run img-build && npm run img-run",
     "lint": "eslint --color src/** && echo \"  No syntax error found\\n\"",
     "types": "echo \"  `flow check --color always`\\n\"",
     "types-cover": "flow-coverage-report -i 'src/**/*.js' -x 'lib/**/*.js'",
