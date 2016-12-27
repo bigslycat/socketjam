@@ -4,7 +4,7 @@
   "description": "Lightweight and flexible Socket.IO JWT Authentication Middleware",
   "main": "lib/createMiddleware.js",
   "engines": {
-    "node": ">=7.3.0",
+    "node": ">=6.9.2",
     "npm": ">=4.0.5"
   },
   "scripts": {
