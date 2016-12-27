@@ -1,0 +1,11 @@
+language: node_js
+node_js:
+  - node
+before_install:
+  - sudo apt-get -qq update
+  - sudo apt-get install libelf1 -y
+install:
+  - npm install
+  - npm run build
+script:
+  - npm test
